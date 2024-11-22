@@ -1,0 +1,43 @@
+name: Deploy to EC2
+
+on:
+  push:
+    branches:
+      - main  # Deploy on pushes to the main branch
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. Check out the repository
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # 2. Log in to Docker Hub (if you use Docker Hub)
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    # 3. Build the Docker image
+    - name: Build Docker image
+      run: docker build -t gwanho/resume .
+
+    # 4. Push the Docker image to Docker Hub (optional)
+    - name: Push Docker image
+      run: docker push gwanho/resume
+
+    # 5. Deploy to EC2 via SSH
+    - name: Deploy to EC2
+      uses: appleboy/ssh-action@v0.1.5
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ubuntu
+        key: ${{ secrets.EC2_SSH_KEY }}
+        script: |
+          docker pull gwanho/resume
+          docker stop resume || true
+          docker rm resume || true
+          docker run -d --name resume -p 4000:4000 gwanho/resume
