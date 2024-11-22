@@ -14,7 +14,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    # 2. Log in to Docker Hub (if you use Docker Hub)
+    # 2. Log in to Docker Hub
     - name: Log in to Docker Hub
       uses: docker/login-action@v2
       with:
@@ -23,11 +23,11 @@ jobs:
 
     # 3. Build the Docker image
     - name: Build Docker image
-      run: docker build -t gwanho/resume .
+      run: docker build -t ${{ secrets.DOCKER_USERNAME }}/resume .
 
-    # 4. Push the Docker image to Docker Hub (optional)
+    # 4. Push the Docker image to Docker Hub
     - name: Push Docker image
-      run: docker push gwanho/resume
+      run: docker push ${{ secrets.DOCKER_USERNAME }}/resume
 
     # 5. Deploy to EC2 via SSH
     - name: Deploy to EC2
@@ -37,7 +37,7 @@ jobs:
         username: ubuntu
         key: ${{ secrets.EC2_SSH_KEY }}
         script: |
-          docker pull gwanho/resume
+          docker pull ${{ secrets.DOCKER_USERNAME }}/resume
           docker stop resume || true
           docker rm resume || true
-          docker run -d --name resume -p 4000:4000 gwanho/resume
+          docker run -d --name resume -p 4000:4000 ${{ secrets.DOCKER_USERNAME }}/resume
