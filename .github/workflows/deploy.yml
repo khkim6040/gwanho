@@ -41,3 +41,10 @@ jobs:
           docker stop resume || true
           docker rm resume || true
           docker run -d --name resume -p 4000:4000 ${{ secrets.DOCKER_USERNAME }}/resume
+
+    # 6. Health Check
+    - name: Health check
+      run: |
+        curl -f http://$EC2_PUBLIC_IP:4000 || (echo "Health check failed" && exit 1)
+      env:
+        EC2_PUBLIC_IP: ${{ secrets.EC2_PUBLIC_IP }}
