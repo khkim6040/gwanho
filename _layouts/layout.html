@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XK5VK9Q1MG"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-XK5VK9Q1MG');
+    </script>
+
+
     <meta charset="utf-8">
     <title>{{ site.title }}</title>
     <meta name="description" content="{{ site.name }}'s Résumé">
@@ -39,17 +50,43 @@
             </a>
         </address>
         <p>
-            <i class = "fa fa-file"></i>
+            <i class="fa fa-file"></i>
             <span>CV: </span>
-            <a href="{{ site.baseurl }}static/cv/cv_en.pdf" class="cv-link">EN</a>
+            <a href="{{ site.baseurl }}static/cv/cv_en.pdf" class="cv-link"
+            onclick="gtag('event', 'click', { 'event_category': 'Download', 'event_label': 'CV_EN' });">
+                EN
+            </a>
             <span>/</span>
-            <a href="{{ site.baseurl }}static/cv/cv_ko.pdf" class="cv-link">KO</a> <br/>
-            <a href="{{ site.blog }}"><i class="fa fa-home"></i> Blog </a> <br/>
-            <a href="{{ site.github }}"><i class="fa fa-github"></i> Github</a> <br/>
-            <a href="{{ site.solvedac }}"><i class="fa fa-code"></i> Solved.ac </a> <br/>
-            <a href="{{ site.soundcloud }}"><i class="fa fa-soundcloud"></i> Soundcloud</a> <br/>
-            <a href="mailto:{{ site.contact }}"><i class="fa fa-envelope"></i> Contact </a> <br/>
-            <!-- <a href="{{ site.baseurl}}sustain/sustain.html">sustain</a> -->
+            <a href="{{ site.baseurl }}static/cv/cv_ko.pdf" class="cv-link"
+            onclick="gtag('event', 'click', { 'event_category': 'Download', 'event_label': 'CV_KO' });">
+                KO
+            </a>
+            <br/>
+            
+            <a href="{{ site.blog }}" onclick="gtag('event', 'click', { 'event_category': 'Navigation', 'event_label': 'Blog' });">
+                <i class="fa fa-home"></i> Blog
+            </a>
+            <br/>
+            
+            <a href="{{ site.github }}" onclick="gtag('event', 'click', { 'event_category': 'Navigation', 'event_label': 'GitHub' });">
+                <i class="fa fa-github"></i> Github
+            </a>
+            <br/>
+            
+            <a href="{{ site.solvedac }}" onclick="gtag('event', 'click', { 'event_category': 'Navigation', 'event_label': 'Solved.ac' });">
+                <i class="fa fa-code"></i> Solved.ac
+            </a>
+            <br/>
+            
+            <a href="{{ site.soundcloud }}" onclick="gtag('event', 'click', { 'event_category': 'Navigation', 'event_label': 'SoundCloud' });">
+                <i class="fa fa-soundcloud"></i> Soundcloud
+            </a>
+            <br/>
+            
+            <a href="mailto:{{ site.contact }}" onclick="gtag('event', 'click', { 'event_category': 'Contact', 'event_label': 'Email' });">
+                <i class="fa fa-envelope"></i> Contact
+            </a>
+            <br/>
         </p>
     </header>
     <div class="thirteen columns clearfix">
