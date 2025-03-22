@@ -17,7 +17,7 @@ author: Gwanho Kim
 # for a normal use at the base of the server change it to "/"
 # To build locally: bundle exec jekyll serve
 baseurl: /
-title: Plz graduate me
+title: let me graduate
 name: Gwanho Kim
 contact: khkim6040@gmail.com
 blog: https://blog.naver.com/ho0ou
@@ -28,7 +28,7 @@ google_maps: 'https://www.postech.ac.kr'
 address:
   city: POSTECH
   country: South Korea
-google_analytics: UA-69300817-1
+google_analytics: G-XK5VK9Q1MG
 
 # needed for travis-ci build
 exclude: [vendor]
