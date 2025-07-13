@@ -15,6 +15,9 @@
 *.swp
 package-lock.json
 
+# Word documents
+*.docx
+
 # site build
 *.gem
 *.rbc
